@@ -44,7 +44,24 @@ function errorOnMoneyStep(session: SessionTrace): FlaggedIssue | null {
   };
 }
 
-const rules: Rule[] = [deadCta, errorOnMoneyStep];
+// Clicked Pay but the session ended without payment_succeeded. Requiring
+// the click (not just reaching the page) is what keeps chose-to-leave
+// sessions out: a debtor who browsed and left is not a bug candidate.
+function funnelDrop(session: SessionTrace): FlaggedIssue | null {
+  const clickedPay = session.events.some((e) => e.name === "pay_clicked");
+  const succeeded = session.events.some((e) => e.name === "payment_succeeded");
+  if (!clickedPay || succeeded) return null;
+  return {
+    session_id: session.session_id,
+    flow: session.flow,
+    failure_mode: "payment attempt never succeeded",
+    matched_rule: "funnel-drop",
+    severity: "medium",
+    reason: "clicked Pay but session ended without payment_succeeded",
+  };
+}
+
+const rules: Rule[] = [deadCta, errorOnMoneyStep, funnelDrop];
 
 // Run every P1 rule over a session. A session can trip several rules —
 // co-occurring signals raise confidence, so we report all of them.
