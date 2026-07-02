@@ -22,6 +22,12 @@ test("dead-cta fires on the rage-clicked dead Pay button (ph-sess-004)", () => {
   assert.ok(rulesFor("ph-sess-004").includes("dead-cta"));
 });
 
+test("a dead button is not double-flagged as a hidden validation block", () => {
+  // ph-sess-004's clicks never reached the network, so submit-retry
+  // (submits that DO reach the server, no success) must stay silent.
+  assert.ok(!rulesFor("ph-sess-004").includes("submit-retry"));
+});
+
 test("error-on-money-step fires on the card_entry exception (ph-sess-005)", () => {
   assert.ok(rulesFor("ph-sess-005").includes("error-on-money-step"));
 });

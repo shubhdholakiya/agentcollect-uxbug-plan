@@ -61,10 +61,14 @@ function funnelDrop(session: SessionTrace): FlaggedIssue | null {
   };
 }
 
-// Two or more Pay attempts and still no success — the "hidden validation
-// block" tell: submits appear to work but nothing ever lands.
+// Two or more Pay attempts that each reached the network and still no
+// success — the "hidden validation block" tell: submits appear to work
+// but nothing ever lands. Attempts without a network request are the
+// dead-CTA case and are deliberately not counted here.
 function submitRetry(session: SessionTrace): FlaggedIssue | null {
-  const attempts = session.events.filter((e) => e.name === "pay_clicked");
+  const attempts = session.events.filter(
+    (e) => e.name === "pay_clicked" && e.had_network_request,
+  );
   const succeeded = session.events.some((e) => e.name === "payment_succeeded");
   if (attempts.length < 2 || succeeded) return null;
   return {
@@ -73,7 +77,7 @@ function submitRetry(session: SessionTrace): FlaggedIssue | null {
     failure_mode: "repeated submit without success",
     matched_rule: "submit-retry",
     severity: "medium",
-    reason: `${attempts.length} Pay attempts, none reached payment_succeeded`,
+    reason: `${attempts.length} Pay attempts reached the network, none reached payment_succeeded`,
   };
 }
 
