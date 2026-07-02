@@ -61,7 +61,23 @@ function funnelDrop(session: SessionTrace): FlaggedIssue | null {
   };
 }
 
-const rules: Rule[] = [deadCta, errorOnMoneyStep, funnelDrop];
+// Two or more Pay attempts and still no success — the "hidden validation
+// block" tell: submits appear to work but nothing ever lands.
+function submitRetry(session: SessionTrace): FlaggedIssue | null {
+  const attempts = session.events.filter((e) => e.name === "pay_clicked");
+  const succeeded = session.events.some((e) => e.name === "payment_succeeded");
+  if (attempts.length < 2 || succeeded) return null;
+  return {
+    session_id: session.session_id,
+    flow: session.flow,
+    failure_mode: "repeated submit without success",
+    matched_rule: "submit-retry",
+    severity: "medium",
+    reason: `${attempts.length} Pay attempts, none reached payment_succeeded`,
+  };
+}
+
+const rules: Rule[] = [deadCta, errorOnMoneyStep, funnelDrop, submitRetry];
 
 // Run every P1 rule over a session. A session can trip several rules —
 // co-occurring signals raise confidence, so we report all of them.
