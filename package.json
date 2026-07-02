@@ -1,0 +1,16 @@
+{
+  "name": "agentcollect-uxbug-detector",
+  "private": true,
+  "version": "0.1.0",
+  "description": "P1 slice of PLAN.md: deterministic Stage-1 heuristics that pre-filter PostHog session traces for UX-bug candidates in the debtor one-time payment flow.",
+  "type": "module",
+  "scripts": {
+    "detect": "node src/cli.ts",
+    "test": "node --test src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0"
+  }
+}

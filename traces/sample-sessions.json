@@ -1,0 +1,79 @@
+[
+  {
+    "session_id": "ph-sess-001",
+    "flow": "debtor_one_time_payment",
+    "device": "desktop_chrome",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-28T14:02:11Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-28T14:02:40Z", "step": "card_entry" },
+      { "name": "pay_clicked", "ts": "2026-06-28T14:03:55Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true },
+      { "name": "payment_succeeded", "ts": "2026-06-28T14:04:02Z", "step": "payment_result" }
+    ]
+  },
+  {
+    "session_id": "ph-sess-002",
+    "flow": "debtor_one_time_payment",
+    "device": "mobile_ios_safari",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-28T19:41:03Z", "step": "invoice_view" },
+      { "name": "$exception", "ts": "2026-06-28T19:41:05Z", "step": "invoice_view", "exception": { "type": "ReferenceError", "message": "gtag is not defined" } },
+      { "name": "$pageview", "ts": "2026-06-28T19:41:52Z", "step": "card_entry" },
+      { "name": "pay_clicked", "ts": "2026-06-28T19:43:20Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true },
+      { "name": "payment_succeeded", "ts": "2026-06-28T19:43:29Z", "step": "payment_result" }
+    ]
+  },
+  {
+    "session_id": "ph-sess-003",
+    "flow": "debtor_one_time_payment",
+    "device": "mobile_android_chrome",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-29T08:15:44Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-29T08:16:30Z", "step": "card_entry" }
+    ]
+  },
+  {
+    "session_id": "ph-sess-004",
+    "flow": "debtor_one_time_payment",
+    "device": "mobile_ios_safari",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-29T12:07:18Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-29T12:08:02Z", "step": "card_entry" },
+      { "name": "pay_clicked", "ts": "2026-06-29T12:09:10Z", "step": "card_entry", "is_rageclick": false, "had_network_request": false },
+      { "name": "pay_clicked", "ts": "2026-06-29T12:09:12Z", "step": "card_entry", "is_rageclick": true, "had_network_request": false },
+      { "name": "pay_clicked", "ts": "2026-06-29T12:09:13Z", "step": "card_entry", "is_rageclick": true, "had_network_request": false },
+      { "name": "pay_clicked", "ts": "2026-06-29T12:09:15Z", "step": "card_entry", "is_rageclick": true, "had_network_request": false }
+    ]
+  },
+  {
+    "session_id": "ph-sess-005",
+    "flow": "debtor_one_time_payment",
+    "device": "mobile_android_chrome",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-29T16:22:51Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-29T16:23:33Z", "step": "card_entry" },
+      { "name": "$exception", "ts": "2026-06-29T16:23:35Z", "step": "card_entry", "exception": { "type": "TypeError", "message": "Cannot read properties of undefined (reading 'mount')" } }
+    ]
+  },
+  {
+    "session_id": "ph-sess-006",
+    "flow": "debtor_one_time_payment",
+    "device": "mobile_ios_safari",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-30T09:54:07Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-30T09:55:01Z", "step": "card_entry" },
+      { "name": "pay_clicked", "ts": "2026-06-30T09:56:40Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true }
+    ]
+  },
+  {
+    "session_id": "ph-sess-007",
+    "flow": "debtor_one_time_payment",
+    "device": "desktop_chrome",
+    "events": [
+      { "name": "$pageview", "ts": "2026-06-30T11:31:26Z", "step": "invoice_view" },
+      { "name": "$pageview", "ts": "2026-06-30T11:32:14Z", "step": "card_entry" },
+      { "name": "pay_clicked", "ts": "2026-06-30T11:33:05Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true },
+      { "name": "pay_clicked", "ts": "2026-06-30T11:33:41Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true },
+      { "name": "pay_clicked", "ts": "2026-06-30T11:34:19Z", "step": "card_entry", "is_rageclick": false, "had_network_request": true }
+    ]
+  }
+]
